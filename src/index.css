@@ -7,7 +7,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main-navbar{
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
+.title-navbar{
+  padding-left: 1%;
+  color: rgb(54, 54, 54);;
+}
+
+.account-navbar{
+  font-weight: 400;
+  padding-left: 1%;
+  color: rgb(153, 153, 154);
+}
+
+img{
+  height: 40px;
+  margin-left: 80%;
+}
+
+
+/*$bg-color: rgb(246, 245, 250);
+$primary-color: rgb(74, 74, 215);
+$secondary-color: rgb(214, 68, 93);
+$text-color: rgb(54, 54, 54);
+$text-light-color: rgb(153, 153, 154);*/
