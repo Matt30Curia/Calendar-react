@@ -1,17 +1,24 @@
+import arrow_back from "../asset/arrow_back.svg";
+import arrow_forward from "../asset/arrow_forward.svg"
+
 function CalendarHeader(){
   return (
-    <nav>
+    <nav className="calendarHeader">
       <section className="day-wiew-filter">
-        <button>day</button>
-        <button>month</button>
-        <button>year</button>
+        <button className="button--day-wiew-filter">day</button>
+        <button className="button--day-wiew-filter">month</button>
+        <button className="button--day-wiew-filter">year</button>
       </section>
-      <section>
-        <button>year</button>
-        <h1>september 1</h1>
-        <button>year</button>
+      <section className="day-slider">
+        <button className="icon">
+          <img className="icon" src={arrow_back} />
+        </button>
+        <p>september 1</p>
+        <button className="icon">
+          <img src={arrow_forward} />
+        </button>
       </section>
-      <button>create an event</button>
+      <button className="button--event">create an event</button>
     </nav>
   );
 }
