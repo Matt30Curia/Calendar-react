@@ -1,5 +1,6 @@
 import accountImage from '../asset/account.png'
 
+
 function NavBar(){
   return (
     <nav className="main-navbar">
