@@ -1,13 +1,12 @@
 import arrow_back from "../asset/arrow_back.svg";
-import arrow_forward from "../asset/arrow_forward.svg"
+import arrow_forward from "../asset/arrow_forward.svg";
 
-function CalendarHeader({ dispatch, currDate, view }) {
+function CalendarHeader({ dispatch, currDate, view, currView }) {
+  let date = new Date(currDate.year, currDate.month, 0);
+  let monthName = date.toLocaleString("default", { month: "long" });
 
-  var date = new Date(currDate.year, currDate.month, 0);
-  var monthName = date.toLocaleString("default", { month: "long" });
-
-  function handleView(type){
-    view((prev)=>type)
+  function handleView(type) {
+    view((prev) => type);
   }
 
   return (
@@ -20,7 +19,11 @@ function CalendarHeader({ dispatch, currDate, view }) {
           day
         </button>
         <button
-          className="button-wiew-filter"
+          className={
+            currView === "month"
+              ? "button-wiew-filter"
+              : "button-wiew-filter"
+          }
           onClick={() => handleView("month")}
         >
           month
@@ -32,6 +35,7 @@ function CalendarHeader({ dispatch, currDate, view }) {
           week
         </button>
       </section>
+
       <section className="day-slider">
         <button
           className="icon"
@@ -40,7 +44,7 @@ function CalendarHeader({ dispatch, currDate, view }) {
           <img className="icon" src={arrow_back} />
         </button>
         <p>
-          {monthName} {currDate.year}
+          {currDate.day} {monthName} {currDate.year}
         </p>
         <button
           className="icon"
@@ -54,4 +58,4 @@ function CalendarHeader({ dispatch, currDate, view }) {
   );
 }
 
-export default CalendarHeader
+export default CalendarHeader;
