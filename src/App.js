@@ -26,7 +26,6 @@ function App() {
         dispatch={dispatch}
         currDate={state}
         view={setCalendarView}
-        currView={calendarView}
       />
       <Calendar daysOfMonth={getDays(calendarView, state)} />
     </>
