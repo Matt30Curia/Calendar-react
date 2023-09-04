@@ -1,22 +1,32 @@
 export function reducer(state, action) {
-  let currYear = state.year;
-  let currMonth = state.month;
-  let currDay = state.day;
 
+  const currDate = new Date(state.year, state.month, 2);
 
+  let amountOfDay = 0,
+      amountOfMonth = 0;
+  
   switch (action.type) {
     case "nextMonth": {
-      currYear = state.month === 12 ? state.year + 1 : state.year;
-      currMonth = state.month === 12 ? 1 : state.month + 1;
-
-      return { day: state.day, month: currMonth, year: currYear };
+      amountOfMonth = +1;
+      break;
     }
     case "prevMonth": {
-      currYear = state.month === 1 ? state.year - 1 : state.year;
-      currMonth = state.month === 1 ? 12 : state.month - 1;
-
-      return { day: state.day, month: currMonth, year: currYear };
+      amountOfMonth = -1;
+      break
     }
-   
+    default:
+      throw("sto esplodendo")
   }
+
+  const newDate = new Date(
+    currDate.getFullYear(),
+    currDate.getMonth() + amountOfMonth
+  );
+
+  
+
+  const [year, month] = newDate.toISOString().split("-");
+
+  return { day: 1, month: month, year: year };
+
 }
