@@ -1,17 +1,55 @@
-function CalendarHeader(){
+import arrow_back from "../asset/arrow_back.svg";
+import arrow_forward from "../asset/arrow_forward.svg"
+
+function CalendarHeader({ dispatch, currDate, view }) {
+
+  var date = new Date(currDate.year, currDate.month, 0);
+  var monthName = date.toLocaleString("default", { month: "long" });
+
+  function handleView(type){
+    view((prev)=>type)
+  }
+
   return (
-    <nav>
+    <nav className="calendarHeader">
       <section className="day-wiew-filter">
-        <button>day</button>
-        <button>month</button>
-        <button>year</button>
+        <button
+          className="button-wiew-filter"
+          onClick={() => handleView("day")}
+        >
+          day
+        </button>
+        <button
+          className="button-wiew-filter"
+          onClick={() => handleView("month")}
+        >
+          month
+        </button>
+        <button
+          className="button-wiew-filter"
+          onClick={() => handleView("week")}
+        >
+          week
+        </button>
       </section>
-      <section>
-        <button>year</button>
-        <h1>september 1</h1>
-        <button>year</button>
+      <section className="day-slider">
+        <button
+          className="icon"
+          onClick={() => dispatch({ type: "prevMonth" })}
+        >
+          <img className="icon" src={arrow_back} />
+        </button>
+        <p>
+          {monthName} {currDate.year}
+        </p>
+        <button
+          className="icon"
+          onClick={() => dispatch({ type: "nextMonth" })}
+        >
+          <img src={arrow_forward} />
+        </button>
       </section>
-      <button>create an event</button>
+      <button className="button--event">create an event</button>
     </nav>
   );
 }
