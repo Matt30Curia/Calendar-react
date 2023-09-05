@@ -1,14 +1,12 @@
 import arrow_back from "../asset/arrow_back.svg";
 import arrow_forward from "../asset/arrow_forward.svg"
 
-function CalendarHeader({ dispatch, currDate, view }) {
+function CalendarHeader({ dispatch, currDate, handleView }) {
 
-  var date = new Date(currDate.year, currDate.month, 0);
+  var date = new Date(currDate.year, currDate.month, 0); //numero di giorni in un mese
   var monthName = date.toLocaleString("default", { month: "long" });
 
-  function handleView(type){
-    view((prev)=>type)
-  }
+  
 
   return (
     <nav className="calendarHeader">
@@ -40,7 +38,7 @@ function CalendarHeader({ dispatch, currDate, view }) {
           <img className="icon" src={arrow_back} />
         </button>
         <p>
-          {monthName} {currDate.year}
+          {currDate.day}, {monthName} {currDate.year}
         </p>
         <button
           className="icon"
