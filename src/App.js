@@ -16,7 +16,7 @@ function App() {
     year: 2023,
   });
 
-  const [calendarView, setCalendarView] = useState( 'month' );
+  const [calendarView, setCalendarView] = useState( 'Month' );
 
   function handleView(type) {
     setCalendarView((prev) => type);
@@ -27,7 +27,12 @@ function App() {
     <>
       <NavBar />
 
-      <CalendarHeader dispatch={dispatch} currDate={state} view={handleView} />
+      <CalendarHeader
+        dispatch={dispatch}
+        currDate={state}
+        handleView={handleView}
+        View={calendarView}
+      />
       <Calendar daysOfMonth={getDays(calendarView, state)} />
     </>
   );

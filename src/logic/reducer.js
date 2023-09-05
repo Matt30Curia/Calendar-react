@@ -2,16 +2,15 @@ export function reducer(state, action) {
   const currDate = new Date(state.year, state.month, state.day);
 
   let amountOfDay = 0,
-    amountOfMonth = new Date(state.year, state.month, 0).getDate() +1;
+    amountOfMonth = 0;
 
   switch (action.type) {
     case "nextMonth": {
-      console.log(amountOfMonth);
-      amountOfDay = amountOfMonth;
+      amountOfMonth = 0;
       break;
     }
     case "prevMonth": {
-      amountOfDay = -amountOfMonth;
+      amountOfMonth = -2;
       break;
     }
     case "nextDay": {
@@ -22,11 +21,28 @@ export function reducer(state, action) {
       amountOfDay = -1;
       break;
     }
+    case "nextWeek": {
+      amountOfDay = +7;
+      break;
+    }
+    case "prevWeek": {
+      amountOfDay = -7;
+      break;
+    }
     default:
       Error("dispatch non previsto");
   }
 
-  const [day, month, year] = getMonthDays(currDate, amountOfDay);
+  let getMonthDay = getMonthDays(currDate, amountOfDay);
+
+  let newDate = new Date(
+    currDate.getFullYear(),
+    currDate.getMonth() + amountOfMonth
+  );
+
+  const [day, month, year] = getMonthDay
+    ? getMonthDay
+    : newDate.toLocaleDateString("it-IT").split("/");
 
   return { day: day, month: month, year: year };
 }

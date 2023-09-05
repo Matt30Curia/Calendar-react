@@ -1,13 +1,13 @@
 
 export function getDays(calendarView, state) {
     switch (calendarView) {
-      case "month": {
+      case "Month": {
         return getDaysOfMonth(state.month, state.year);
       }
-      case "week": {
-        return getDaysOfWeek(state);
+      case "Week": {
+        return getDaysOfWeek(state.day, state.month, state.year);
       }
-      case "day": {
+      case "Day": {
         return [state.day];
       }
     }
@@ -15,6 +15,7 @@ export function getDays(calendarView, state) {
 
 
 export function getDaysOfMonth(month, year) {
+
   const days = new Date(`${month} 1, ${year}`).getDay() - 1;
   const prevMonthDaysNumberOfDay = new Date(year, month - 1, 0).getDate();
   const currMonthDaysNumberOfDay = new Date(year, month, 0).getDate();
@@ -27,9 +28,9 @@ export function getDaysOfMonth(month, year) {
   return daysOfMonth;
 }
 
-export function getDaysOfWeek(state) {
-  return []
+export function getDaysOfWeek(day, month, year) {
 
-
+  const days = getDaysOfMonth(month, year);
+  return days.slice(day, day+7);
 }
 

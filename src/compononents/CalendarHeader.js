@@ -1,7 +1,7 @@
 import arrow_back from "../asset/arrow_back.svg";
 import arrow_forward from "../asset/arrow_forward.svg"
 
-function CalendarHeader({ dispatch, currDate, handleView }) {
+function CalendarHeader({ dispatch, currDate, handleView, View }) {
 
   var date = new Date(currDate.year, currDate.month, 0); //numero di giorni in un mese
   var monthName = date.toLocaleString("default", { month: "long" });
@@ -13,19 +13,19 @@ function CalendarHeader({ dispatch, currDate, handleView }) {
       <section className="day-wiew-filter">
         <button
           className="button-wiew-filter"
-          onClick={() => handleView("day")}
+          onClick={() => handleView("Day")}
         >
           day
         </button>
         <button
           className="button-wiew-filter"
-          onClick={() => handleView("month")}
+          onClick={() => handleView("Month")}
         >
           month
         </button>
         <button
           className="button-wiew-filter"
-          onClick={() => handleView("week")}
+          onClick={() => handleView("Week")}
         >
           week
         </button>
@@ -33,7 +33,7 @@ function CalendarHeader({ dispatch, currDate, handleView }) {
       <section className="day-slider">
         <button
           className="icon"
-          onClick={() => dispatch({ type: "prevMonth" })}
+          onClick={() => dispatch({ type: `prev${View}` })}
         >
           <img className="icon" src={arrow_back} />
         </button>
@@ -42,7 +42,7 @@ function CalendarHeader({ dispatch, currDate, handleView }) {
         </p>
         <button
           className="icon"
-          onClick={() => dispatch({ type: "nextMonth" })}
+          onClick={() => dispatch({ type: `next${View}` })}
         >
           <img src={arrow_forward} />
         </button>
