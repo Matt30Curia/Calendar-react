@@ -1,4 +1,5 @@
 function Calendar({ daysOfMonth }) {
+  console.log("render")
   return (
     <div className="calendar-grid">
       <div >domenica</div>

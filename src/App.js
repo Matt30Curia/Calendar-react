@@ -18,15 +18,16 @@ function App() {
 
   const [calendarView, setCalendarView] = useState( 'month' );
 
+  function handleView(type) {
+    setCalendarView((prev) => type);
+  }
+
+
   return (
     <>
       <NavBar />
 
-      <CalendarHeader
-        dispatch={dispatch}
-        currDate={state}
-        view={setCalendarView}
-      />
+      <CalendarHeader dispatch={dispatch} currDate={state} view={handleView} />
       <Calendar daysOfMonth={getDays(calendarView, state)} />
     </>
   );

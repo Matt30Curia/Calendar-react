@@ -1,32 +1,45 @@
 export function reducer(state, action) {
-
-  const currDate = new Date(state.year, state.month, 2);
+  const currDate = new Date(state.year, state.month, state.day);
 
   let amountOfDay = 0,
-      amountOfMonth = 0;
-  
+    amountOfMonth = new Date(state.year, state.month, 0).getDate() +1;
+
   switch (action.type) {
     case "nextMonth": {
-      amountOfMonth = +1;
+      console.log(amountOfMonth);
+      amountOfDay = amountOfMonth;
       break;
     }
     case "prevMonth": {
-      amountOfMonth = -1;
-      break
+      amountOfDay = -amountOfMonth;
+      break;
+    }
+    case "nextDay": {
+      amountOfDay = +1;
+      break;
+    }
+    case "prevDay": {
+      amountOfDay = -1;
+      break;
     }
     default:
-      throw("sto esplodendo")
+      Error("dispatch non previsto");
   }
 
-  const newDate = new Date(
-    currDate.getFullYear(),
-    currDate.getMonth() + amountOfMonth
-  );
+  const [day, month, year] = getMonthDays(currDate, amountOfDay);
 
-  
+  return { day: day, month: month, year: year };
+}
 
-  const [year, month] = newDate.toISOString().split("-");
+function getMonthDays(dataInput, amountOfDay) {
+  const nextDate = new Date(dataInput);
 
-  return { day: 1, month: month, year: year };
+  // Aggiunge 1 giorno alla data successiva.
+  nextDate.setDate(nextDate.getDate() + amountOfDay);
 
+  if (amountOfDay !== 0) {
+    return [nextDate.getDate(), nextDate.getMonth(), nextDate.getFullYear()];
+  }
+
+  return null;
 }

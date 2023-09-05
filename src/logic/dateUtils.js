@@ -5,7 +5,10 @@ export function getDays(calendarView, state) {
         return getDaysOfMonth(state.month, state.year);
       }
       case "week": {
-        return getDaysOfWeek(state, );
+        return getDaysOfWeek(state);
+      }
+      case "day": {
+        return [state.day];
       }
     }
   }
